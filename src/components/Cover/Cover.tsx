@@ -4,7 +4,7 @@ import classes from './Cover.module.scss'
 export function Cover() {
     return (
         <div className={classes.cover}>
-            123
+
         </div>
     )
 }
