@@ -1,7 +1,38 @@
-.cover {
-  display: block;
-  margin: 0 auto ;
+.coverContainer {
+  overflow: hidden;
+  display: flex;
+  margin: 0 auto;
   width: 56.25vh;
   height: 100vh;
   background-color: white;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+  position: relative;
+
+  .cover {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    filter: blur(2px);
+    transform: scale(1.02);
+  }
+}
+
+
+.mainImage {
+  border: 10px white solid;
+  box-shadow: 0 0 5px black;
+}
+
+.author {
+  font-size: 32px;
+  margin-bottom: 32px;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 32px;
 }
