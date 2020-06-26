@@ -2,13 +2,13 @@
   overflow: hidden;
   display: flex;
   margin: 0 auto;
-  width: 56.25vh;
-  height: 100vh;
+  width: 720px;
+  height: 1280px;
   background-color: white;
   flex-direction: column;
   align-items: center;
-  padding: 32px;
   position: relative;
+  transform-origin: top center;
 
   .cover {
     position: absolute;
@@ -21,18 +21,30 @@
   }
 }
 
-
 .mainImage {
-  border: 10px white solid;
-  box-shadow: 0 0 5px black;
+  box-sizing: content-box;
+  width: 550px;
+  height: 550px;
+}
+
+.authorGlass {
+  margin: 64px 0;
 }
 
 .author {
-  font-size: 32px;
-  margin-bottom: 32px;
+  font-size: 64px;
 }
 
 .name {
   font-weight: bold;
-  font-size: 32px;
+  font-size: 64px;
+  font-family: 'Caveat', cursive;
+}
+
+.palaroid {
+  position: relative;
+  background-color: white;
+  box-shadow: 0 0 30px black;
+  padding: 30px;
+  text-align: center;
 }
