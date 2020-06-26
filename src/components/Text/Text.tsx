@@ -1,4 +1,4 @@
-import React, {ReactEventHandler, useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import classes from './Text.module.scss'
 import cls from 'classnames';
 import {TextType} from "../../models/text";
@@ -11,27 +11,18 @@ export interface TextPropsType {
 
 export function Text({text, onSave, className}: TextPropsType) {
 
-    const [inputText, setInputText] = useState<string>(text.text);
+    const [inputText, setInputText] = useState<TextType>({...text});
     const [inputVisible, setInputVisible] = useState(false);
     const inputRef = useRef<HTMLInputElement>(document.createElement("input"));
-
-    function onChange({target}: any) {
-        setInputText(target.value);
-    }
-
-    function onBlur() {
-        setInputText(text.text);
-        setInputVisible(false);
-    }
 
     function onKeyDown(e: React.KeyboardEvent) {
         switch (e.key) {
             case 'Enter':
-                onSave && onSave({...text, text: inputText});
+                onSave && onSave({...inputText});
                 setInputVisible(false);
                 break;
             case 'Escape':
-                setInputText(text.text);
+                setInputText({...text});
                 setInputVisible(false);
                 break;
             default:
@@ -58,7 +49,14 @@ export function Text({text, onSave, className}: TextPropsType) {
         <span className={cls(classes.text, className)} onContextMenu={onClick} style={{color: text.color}}>
             {text.text}
             {inputVisible && <div className={classes.editor}>
-                <input ref={inputRef} onChange={onChange} value={inputText} onBlur={onBlur} onKeyDown={onKeyDown}/>
+                <input ref={inputRef}
+                       onChange={e => setInputText({...inputText, text: e.target.value})}
+                       value={inputText.text}
+                       onKeyDown={onKeyDown}/>
+                <input
+                       onChange={e => setInputText({...inputText, color: e.target.value})}
+                       value={inputText.color}
+                       onKeyDown={onKeyDown}/>
             </div>}
         </span>
     );

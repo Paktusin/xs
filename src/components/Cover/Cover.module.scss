@@ -47,4 +47,22 @@
     text-align: center;
   }
 
+  .colorText {
+    padding: 32px;
+    width: 100%;
+    position: relative;
+    font-size: 48px;
+    display: flex;
+    flex: 1 auto;
+    margin: 64px;
+    font-family: 'Oswald', sans-serif;
+
+    .border {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 50%;
+      height: 3px;
+    }
+  }
 }

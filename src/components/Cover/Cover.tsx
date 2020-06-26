@@ -12,7 +12,7 @@ const defaultProject = {
     name: {text: 'Test pattern', color: 'black'},
     back: {color: 'rgba(255,255,0,.5)', image: ''},
     size: '45x45',
-    colors: {text: 'Палитра DMS', color: 'black'}
+    description: {text: 'Палитра DMS', color: 'white'}
 };
 
 export function Cover() {
@@ -25,10 +25,18 @@ export function Cover() {
         service.put('test', data)
     }, [data])
 
-    useEffect(() => {
+    const resize = React.useCallback(() => {
         const xDiff = window.innerWidth / 720;
         const yDiff = window.innerHeight / 1280;
         setScale(Math.min(xDiff, yDiff).toFixed(2));
+    }, []);
+
+    useEffect(() => {
+        resize();
+        window.addEventListener('resize', resize);
+        return () => {
+            window.removeEventListener('resize', resize);
+        }
     }, [])
 
     return (
@@ -43,6 +51,10 @@ export function Cover() {
             <div className={classes.palaroid} style={{transform: `rotate(${rotate}deg)`}}>
                 <Image image={data.image} className={classes.mainImage} onChange={image => setData({...data, image})}/>
                 <Text text={data.name} className={classes.name} onSave={name => setData({...data, name})}/>
+            </div>
+            <div className={classes.colorText}>
+                <div className={classes.border} style={{backgroundColor: data.description.color}}/>
+                <Text text={data.description} onSave={description => setData({...data, description})}/>
             </div>
         </div>
     )

@@ -6,6 +6,5 @@ export interface CoverType {
     name: TextType;
     author: TextType;
     size: string;
-    colors: TextType;
-    description?: TextType;
+    description: TextType;
 }
