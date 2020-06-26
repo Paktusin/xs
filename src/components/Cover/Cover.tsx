@@ -32,7 +32,7 @@ export function Cover() {
     }, [])
 
     return (
-        <div className={classes.coverContainer}
+        <div id={'cover'} className={classes.coverContainer}
              style={{transform: `scale(${scale})`}}>
             <Image image={data.back.image} className={classes.cover}
                    onChange={image => setData({...data, back: {...data.back, image}})}>
