@@ -3,15 +3,15 @@ import classes from './Cover.module.scss'
 import {Text} from "../Text/Text";
 import {Image} from "../Image/Image";
 import {CoverType} from "../../models/cover";
-import LocalStorageService from "../../services/localStorage";
+import LocalStorageService from "../../components/localStorageService";
 
 const defaultProject = {
     image: '',
-    author: 'Nadegda Davlichina',
-    name: 'Fall coming',
+    author: {text: 'Nadegda Davlichina', color: 'black'},
+    name: {text: 'Fall coming', color: 'white'},
     back: {color: 'rgba(255,255,0,.5)', image: ''},
     size: '45x45',
-    colors: 'Палитра DMS'
+    colors: {text: 'Палитра DMS', color: 'white'}
 };
 
 export function Cover() {
@@ -19,6 +19,7 @@ export function Cover() {
     const [data, setData] = useState<CoverType>(service.get('test', defaultProject));
 
     useEffect(() => {
+        console.log(data);
         service.put('test', data)
     }, [data])
 

@@ -1,9 +1,11 @@
+import {TextType} from "./text";
+
 export interface CoverType {
     back: { image: string; color: string; }
     image: string;
-    name: string;
-    author: string;
+    name: TextType;
+    author: TextType;
     size: string;
-    colors: string;
-    description?: string;
+    colors: TextType;
+    description?: TextType;
 }

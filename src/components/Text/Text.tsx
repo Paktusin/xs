@@ -1,16 +1,17 @@
 import React, {ReactEventHandler, useEffect, useRef, useState} from "react";
 import classes from './Text.module.scss'
 import cls from 'classnames';
+import {TextType} from "../../models/text";
 
 export interface TextPropsType {
-    text: string;
-    onSave?: (text: string) => void;
+    text: TextType;
+    onSave?: (text: TextType) => void;
     className?: string;
 }
 
 export function Text({text, onSave, className}: TextPropsType) {
 
-    const [inputText, setInputText] = useState(text);
+    const [inputText, setInputText] = useState<string>(text.text);
     const [inputVisible, setInputVisible] = useState(false);
     const inputRef = useRef<HTMLInputElement>(document.createElement("input"));
 
@@ -19,26 +20,22 @@ export function Text({text, onSave, className}: TextPropsType) {
     }
 
     function onBlur() {
-        setInputText(text);
+        setInputText(text.text);
         setInputVisible(false);
     }
 
     function onKeyDown(e: React.KeyboardEvent) {
         switch (e.key) {
             case 'Enter':
-                onSave && onSave(inputText);
+                onSave && onSave({...text, text: inputText});
                 setInputVisible(false);
                 break;
             case 'Escape':
-                setInputText(text);
+                setInputText(text.text);
                 setInputVisible(false);
                 break;
             default:
                 return
-        }
-
-        if (e.key === 'Enter') {
-            onSave && onSave(inputText);
         }
         setInputVisible(false);
     }
@@ -58,8 +55,8 @@ export function Text({text, onSave, className}: TextPropsType) {
     }, [inputVisible])
 
     return (
-        <span className={cls(classes.text, className)} onContextMenu={onClick}>
-            {text}
+        <span className={cls(classes.text, className)} onContextMenu={onClick} style={{color: text.color}}>
+            {text.text}
             {inputVisible && <div className={classes.editor}>
                 <input ref={inputRef} onChange={onChange} value={inputText} onBlur={onBlur} onKeyDown={onKeyDown}/>
             </div>}
