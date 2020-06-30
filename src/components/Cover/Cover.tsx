@@ -54,7 +54,7 @@ export function Cover() {
             </div>
             <div className={classes.colorText}>
                 <div className={classes.border} style={{backgroundColor: data.description.color}}/>
-                <Text text={data.description} onSave={description => setData({...data, description})}/>
+                <Text multi={true} text={data.description} onSave={description => setData({...data, description})}/>
             </div>
         </div>
     )

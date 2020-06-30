@@ -1,5 +1,14 @@
 .text {
+  min-width: 300px;
   position: relative;
+
+  span.content {
+    white-space: pre-wrap;
+  }
+
+  textarea {
+    resize: none;
+  }
 }
 
 .editor {
@@ -12,7 +21,7 @@
   justify-content: center;
   flex-direction: column;
 
-  input{
+  input, textarea {
     font-size: 32px;
   }
 }
